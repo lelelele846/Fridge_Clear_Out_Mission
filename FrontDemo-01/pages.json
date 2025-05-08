@@ -1,0 +1,67 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "我的冰箱",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/index/person",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/index/ai",
+			"style": {
+				"navigationBarTitleText": "AI 菜谱",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/index/community",
+			"style": {
+				"navigationBarTitleText": "社区",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/food/detail",
+			"style": {
+				"navigationBarTitleText": "食物详情",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/recipe/generate",
+			"style": {
+				"navigationBarTitleText": "食谱生成",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/food/manual-add",
+			"style": {
+				"navigationBarTitleText": "手动添加食物",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/food/photo-add",
+			"style": {
+				"navigationBarTitleText": "拍照添加食物",
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "食物仓库",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
