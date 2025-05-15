@@ -24,6 +24,7 @@ export default {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
