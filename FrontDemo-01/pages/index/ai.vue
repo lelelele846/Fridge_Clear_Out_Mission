@@ -76,12 +76,6 @@
     </view>
     <!-- 底部导航栏 -->
     <BottomTabBar @add="openAddModal" active="ai" />
-    <AddModal
-      v-if="showAddModal"
-      @close="showAddModal = false"
-      @manual="goManualAdd"
-      @photo="goPhotoAdd"
-    />
   </view>
 </template>
 
@@ -219,15 +213,6 @@ export default {
       uni.navigateTo({
         url: `/pages/recipe/generate?foods=${JSON.stringify(expiringFoods.map(f => f.name))}`
       });
-    },
-    openAddModal() { this.showAddModal = true },
-    goManualAdd() {
-      this.showAddModal = false;
-      uni.navigateTo({ url: '/pages/food/manual-add' });
-    },
-    goPhotoAdd() {
-      this.showAddModal = false;
-      uni.navigateTo({ url: '/pages/food/photo-add' });
     }
   }
 }

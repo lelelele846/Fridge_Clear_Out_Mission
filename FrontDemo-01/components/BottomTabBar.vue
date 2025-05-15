@@ -53,12 +53,17 @@ export default {
       } else if(type === 'community') {
         uni.reLaunch({ url: '/pages/index/community' })
       } else if(type === 'add') {
-		  this.showAddModal = true;
+		  this.openAddModal()
       } else {
         uni.showToast({ title: '功能待开发', icon: 'none' })
       }
     },
+	openAddModal(){
+		console.log("OPEN THE MODAL");
+		this.showAddModal = true;
+	},
     closeAddModal() {
+	    console.log("ClOSE THE MODAL");
       this.showAddModal = false;
     },
     goManualAdd() {

@@ -1,10 +1,6 @@
 <template>
 	<view class="warehouse-container">
-		<!-- 顶部栏 -->
-		<view class="top-bar">
-			<text class="time">{{ currentTime }}</text>
-			<uni-icons type="gear" size="28" class="setting-icon" @click="goSetting" />
-		</view>
+
 		<!-- 统计模块 -->
 		<view class="stat-cards">
 			<view class="stat-card all" :class="{'selected': currentFilter === 'all'}" @click="filterFood('all')">
@@ -91,20 +87,11 @@
 		<!-- 底部功能栏 -->
 		<BottomTabBar active="fridge" @add="openAddModal" />
 
-		<!-- 添加方式弹窗 -->
-		<AddModal
-		  v-if="showAddModal"
-		  @close="closeAddModal"
-		  @manual="goManualAdd"
-		  @photo="goPhotoAdd"
-		/>
-
 	</view>
 </template>
 
 <script>
 	import BottomTabBar from '@/components/BottomTabBar.vue'
-	import AddModal from '@/components/AddModal.vue'
 	export default {
 		data() {
 			return {
@@ -153,8 +140,7 @@
 						expiryDate: '2024-03-26',
 						image: 'https://example.com/banana.jpg'
 					}
-				],
-				showAddModal: false
+				]
 			}
 		},
 		computed: {
@@ -250,20 +236,6 @@
 					url: `/pages/food/detail?id=${food.name}`
 				});
 			},
-			openAddModal() {
-				this.showAddModal = true;
-			},
-			closeAddModal() {
-				this.showAddModal = false;
-			},
-			goManualAdd() {
-				this.showAddModal = false;
-				uni.navigateTo({ url: '/pages/food/manual-add' });
-			},
-			goPhotoAdd() {
-				this.showAddModal = false;
-				uni.navigateTo({ url: '/pages/food/photo-add' });
-			},
 			navigateToManual() {
 				uni.navigateTo({ url: '/pages/food/manual-add' });
 			},
@@ -286,7 +258,7 @@
 				});
 			}
 		},
-		components: { BottomTabBar, AddModal }
+		components: { BottomTabBar}
 	}
 </script>
 

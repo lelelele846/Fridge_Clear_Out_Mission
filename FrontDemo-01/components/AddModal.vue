@@ -1,5 +1,5 @@
 <template>
-  <view class="add-modal-bg" @click.self="$emit('close')">
+  <view  class="add-modal-bg" @click= "$emit('close')">
     <view class="add-modal">
       <button class="add-btn" @click="$emit('manual')">
         <uni-icons type="compose" size="32" color="#fff" style="margin-right:16rpx;" />手动添加
@@ -24,7 +24,6 @@ export default {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
