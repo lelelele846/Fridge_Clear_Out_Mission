@@ -100,50 +100,12 @@
 				currentYear: new Date().getFullYear(),
 				currentMonth: new Date().getMonth() + 1,
 				weekDays: ['日', '一', '二', '三', '四', '五', '六'],
-				foodList: [
-					{ 
-						name: '黄色番茄', 
-						emoji: '🍅',
-						kcal: 32.0, 
-						carb: 6.3, 
-						protein: 2.1, 
-						fat: 0.6, 
-						price: '0.00', 
-						expired: false,
-						expSoon: false,
-						expiryDate: '2024-03-25',
-						image: 'https://example.com/tomato.jpg'
-					},
-					{ 
-						name: '苹果', 
-						emoji: '🍎',
-						kcal: 52.0, 
-						carb: 13.8, 
-						protein: 0.3, 
-						fat: 0.2, 
-						price: '0.00', 
-						expired: true,
-						expSoon: false,
-						expiryDate: '2024-03-20',
-						image: 'https://example.com/apple.jpg'
-					},
-					{ 
-						name: '香蕉', 
-						emoji: '🍌',
-						kcal: 89.0, 
-						carb: 22.8, 
-						protein: 1.1, 
-						fat: 0.3, 
-						price: '0.00', 
-						expired: false,
-						expSoon: true,
-						expiryDate: '2024-03-26',
-						image: 'https://example.com/banana.jpg'
-					}
-				]
 			}
 		},
 		computed: {
+			foodList() {
+			  return getApp().globalData.foodList;
+			},
 			filteredFoodList() {
 				switch(this.currentFilter) {
 					case 'exp-soon':
@@ -206,6 +168,7 @@
 			}
 		},
 		onLoad() {
+			getApp().fetchFoodList();
 			this.updateTime();
 			setInterval(this.updateTime, 1000);
 		},
@@ -233,7 +196,7 @@
 			},
 			showFoodDetail(food) {
 				uni.navigateTo({
-					url: `/pages/food/detail?id=${food.name}`
+					 url: `/pages/food/detail?food=${encodeURIComponent(JSON.stringify(food))}`
 				});
 			},
 			navigateToManual() {

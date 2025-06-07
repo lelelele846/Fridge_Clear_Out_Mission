@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: BackEnd
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: fht041029
+    url: jdbc:mysql://localhost:3306/fridge_missiondb
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+#aliyun:
+#  oss:
+#    endpoint: https://oss-cn-beijing.aliyuncs.com
+#    bucketName: f-java-web01
+#    region: cn-beijing

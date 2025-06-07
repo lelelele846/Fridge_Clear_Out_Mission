@@ -79,10 +79,12 @@
 </template>
 
 <script>
+	
 	export default {
 		data() {
 			return {
-				foodDetail: {
+				foodDetail: [
+					{
 					name: '黄色番茄',
 					emoji: '🍅',
 					image: 'https://example.com/tomato.jpg',
@@ -94,13 +96,25 @@
 					fat: 0.6,
 					expired: false,
 					expSoon: false,
-					storageTips: '建议存放在阴凉干燥处，避免阳光直射。最佳保存温度为10-15℃。'
-				}
+					storageTips: '建议存放在阴凉干燥处，避免阳光直射。最佳保存温度为10-15℃。',
+					}
+				]
 			}
 		},
 		onLoad(options) {
-			// 这里可以根据传入的id获取食物详情
-			console.log('Food ID:', options.id);
+			if (options.food) {
+			      try {
+			        this.foodDetail = JSON.parse(decodeURIComponent(options.food));
+			      } catch (error) {
+			        console.error('解析食物信息时出错:', error);
+			      }
+			}
+		},
+		computed:{
+			foodList()
+			{
+				return getApp().globalData.foodList;
+			}
 		},
 		methods: {
 			goBack() {
@@ -112,24 +126,35 @@
 					icon: 'none'
 				});
 			},
-			deleteFood() {
-				uni.showModal({
-					title: '确认删除',
-					content: '确定要删除这个食物吗？',
-					success: (res) => {
-						if (res.confirm) {
-							uni.showToast({
-								title: '删除成功',
-								icon: 'success'
-							});
-							setTimeout(() => {
-								uni.navigateBack();
-							}, 1500);
-						}
-					}
-				});
-			}
-		}
+			 async deleteFood() {
+			      uni.showModal({
+			        title: '确认删除',
+			        content: '确定要删除这个食物吗？',
+			        success: async (res) => {
+			          if (res.confirm) {
+			            try {
+			              const foodId = this.foodDetail.id;
+						  alert(foodId);
+			              await axios.delete(`http://localhost:8080/food/${foodId}`);
+			              uni.showToast({
+			                title: '删除成功',
+			                icon: 'success'
+			              });
+			              setTimeout(() => {
+			                uni.navigateBack();
+			              }, 1500);
+			            } catch (error) {
+			              console.error(error);
+			              uni.showToast({
+			                title: '删除失败',
+			                icon: 'none'
+			              });
+			            }
+			          }
+			        }
+			      });
+			    }
+			  }
 	}
 </script>
 

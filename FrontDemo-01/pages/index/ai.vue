@@ -111,50 +111,23 @@ export default {
       ],
       isSelectMode: false,
       selectedFoods: [],
-      foodList: [
-        { 
-          name: '黄色番茄', 
-          emoji: '🍅',
-          kcal: 32.0, 
-          carb: 6.3, 
-          protein: 2.1, 
-          fat: 0.6, 
-          price: '0.00', 
-          expired: false,
-          expSoon: false,
-          expiryDate: '2024-03-25',
-          image: 'https://example.com/tomato.jpg'
-        },
-        { 
-          name: '苹果', 
-          emoji: '🍎',
-          kcal: 52.0, 
-          carb: 13.8, 
-          protein: 0.3, 
-          fat: 0.2, 
-          price: '0.00', 
-          expired: true,
-          expSoon: false,
-          expiryDate: '2024-03-20',
-          image: 'https://example.com/apple.jpg'
-        },
-        { 
-          name: '香蕉', 
-          emoji: '🍌',
-          kcal: 89.0, 
-          carb: 22.8, 
-          protein: 1.1, 
-          fat: 0.3, 
-          price: '0.00', 
-          expired: false,
-          expSoon: true,
-          expiryDate: '2024-03-26',
-          image: 'https://example.com/banana.jpg'
-        }
-      ],
       showAddModal: false
     }
   },
+  computed: {
+      foodList() {
+        return getApp().globalData.foodList;
+      },
+      loading() {
+        return getApp().globalData.loading;
+      }
+    },
+    onLoad() {
+      // 如果需要重新加载数据
+      if (this.foodList.length === 0) {
+        getApp().fetchFoodList();
+      }
+    },
   methods: {
     onDietChange(e) {
       this.dietIndex = e.detail.value;
@@ -178,7 +151,7 @@ export default {
     },
     showFoodDetail(food) {
       uni.navigateTo({
-        url: `/pages/food/detail?id=${food.name}`
+        url: `/pages/food/detail?food=${encodeURIComponent(JSON.stringify(food))}`
       });
     },
     toggleSelectMode() {
